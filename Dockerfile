@@ -1,7 +1,12 @@
-FROM node:latest
+FROM node:6-alpine
 MAINTAINER Atlassian Labs "https://botlab.hipch.at"
-COPY . /src
-RUN cd /src; npm install
-EXPOSE 8080
-CMD export MONGO_ENV=MONGO_URL; export MONGO_URL="mongodb://$MONGO_PORT_27017_TCP_ADDR:27017/ac"; node --harmony /src/web.js
+WORKDIR /usr/src/app
+COPY package.json /usr/src/app
+RUN npm install
+
+COPY . /usr/src/app
+
+EXPOSE 3024
+ENV MONGOHQ_URL mongodb://localhost:27017/karma
+CMD node --harmony /src/web.js
 
