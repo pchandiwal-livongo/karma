@@ -1,7 +1,7 @@
 version: '2'
 services:
   karma:
-    image: atlassian_labs/karma
+    image: atlassianlabs/karma
     environment:
       - LOCAL_BASE_URL
       - PORT=3020
