@@ -123,7 +123,8 @@ addon.webhook('room_message', new RegExp(strIncDec), function *() {
       var user = findUser(this.message.mentions, match[1].slice(1));
       if (user) {
         if (user.id === sender.id) {
-          message.push(change > 0 ? 'Don\'t be a weasel.' : 'Aw, don\'t be so hard on yourself.');
+          value = yield karma.updateUser(user, change);
+          message.push(change > 0 ? 'Parag is BatMan' : 'Aw, don\'t be so hard on yourself.');
           continue;
         } else {
           subject = user.name;
